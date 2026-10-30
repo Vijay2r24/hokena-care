@@ -91,7 +91,6 @@ export default function Footer() {
                 { label: "Preventive Health Packages", to: "/packages" },
                 { label: "International Patient Desk", to: "/heal-in-india" },
                 { label: "Cashless Insurance Assistance", to: "/contact" },
-                { label: "Figma Screen Showcase", to: "/screens" },
               ].map((item) => (
                 <li key={item.label}>
                   <Link
