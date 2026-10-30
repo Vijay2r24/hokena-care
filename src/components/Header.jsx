@@ -49,9 +49,13 @@ export default function Header() {
             <span className="text-white/80 hidden sm:inline">NABH & NABL Accredited Surgery Network with Cashless Support</span>
           </div>
           <div className="flex items-center gap-4 text-white/80">
-            <a href="tel:1800465362" className="flex items-center gap-1.5 hover:text-[#ff8533] transition-colors">
+            <a href="tel:+918296183009" className="flex items-center gap-1.5 hover:text-[#ff8533] transition-colors">
               <PhoneCall className="h-3 w-3 text-[#ff6b00]" />
-              <span className="font-bold text-white">1800-HOKENA</span> (24x7 Helpline)
+              <span className="font-bold text-white">+91 8296 183 009</span> (24x7 Helpline)
+            </a>
+            <span className="text-white/30 hidden md:inline">|</span>
+            <a href="https://wa.me/918296183009" target="_blank" rel="noreferrer" className="hidden md:flex items-center gap-1 text-[#34d373] hover:underline transition-colors font-bold">
+              WhatsApp Desk
             </a>
             <span className="text-white/30 hidden md:inline">|</span>
             <Link to="/heal-in-india" className="hidden md:flex items-center gap-1 hover:text-white transition-colors">

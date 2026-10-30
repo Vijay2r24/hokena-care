@@ -112,21 +112,21 @@ export default function Footer() {
             </h4>
             <div className="mt-4 space-y-3 text-sm">
               <a
-                href="tel:1800465362"
+                href="tel:+918296183009"
                 className="flex items-center gap-2.5 font-bold text-white hover:text-[#ff8533] transition-colors"
               >
                 <PhoneCall className="h-4 w-4 text-[#ff6b00]" />
-                1800-HOKENA (Toll Free)
+                +91 8296 183 009 (Direct Desk)
               </a>
               <a
-                href="mailto:care@hokenacare.com"
+                href="mailto:info@hokenacare.com"
                 className="flex items-center gap-2.5 text-slate-300 hover:text-white transition-colors"
               >
                 <Mail className="h-4 w-4 text-[#f44236]" />
-                care@hokenacare.com
+                info@hokenacare.com
               </a>
               <a
-                href="https://wa.me/911800465362"
+                href="https://wa.me/918296183009"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-2.5 text-slate-300 hover:text-white transition-colors"
@@ -136,7 +136,7 @@ export default function Footer() {
               </a>
               <p className="flex items-start gap-2.5 text-xs text-slate-400 pt-2">
                 <MapPin className="h-4 w-4 text-[#ff6b00] shrink-0 mt-0.5" />
-                Hokena Tower, Sector 44, Gurgaon, Delhi NCR & Health City Bengaluru, India
+                Hokena Care Headquarters, Bangalore, Karnataka, India
               </p>
             </div>
           </div>

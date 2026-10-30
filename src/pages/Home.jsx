@@ -13,20 +13,23 @@ import {
   Activity,
   FlaskConical,
   Scan,
-  Home as HomeIcon,
   Building2,
   Award,
   Globe2,
   ChevronRight,
   Star,
   Users,
-  Compass,
+  MessageCircle,
 } from "lucide-react"
 import Typewriter from "../components/ui/Typewriter"
+import CostSavingsCalculator from "../components/home/CostSavingsCalculator"
+import CareJourneyTimeline from "../components/home/CareJourneyTimeline"
+import WhyIndiaSection from "../components/home/WhyIndiaSection"
+import FaqAccordion from "../components/home/FaqAccordion"
 
 const services = [
   { icon: HeartPulse, label: "Health Packages", to: "/packages", color: "from-orange-500 to-amber-500", text: "text-orange-600", bg: "bg-orange-50" },
-  { icon: FlaskConical, label: "Lab Tests", to: "/packages", color: "from-red-500 to-rose-500", text: "text-red-600", bg: "bg-red-50" },
+  { icon: FlaskConical, label: "Diagnostic Tests", to: "/packages", color: "from-red-500 to-rose-500", text: "text-red-600", bg: "bg-red-50" },
   { icon: Stethoscope, label: "Consult Doctors", to: "/doctors", color: "from-amber-500 to-yellow-500", text: "text-amber-700", bg: "bg-amber-50" },
   { icon: Scan, label: "Radiology & MRI", to: "/treatments", color: "from-orange-600 to-red-600", text: "text-orange-700", bg: "bg-orange-50" },
   { icon: Globe2, label: "Heal in India", to: "/heal-in-india", color: "from-orange-500 to-rose-500", text: "text-orange-600", bg: "bg-orange-50" },
@@ -35,40 +38,40 @@ const services = [
 
 const specialties = [
   {
-    title: "Laparoscopic & General Surgery",
-    desc: "Gallbladder, hernia, appendicitis, and advanced abdominal keyhole procedures.",
-    procedures: "40+ Procedures",
-    popular: "Minimally Invasive",
-  },
-  {
-    title: "Orthopedics & Joint Replacement",
-    desc: "Robotic knee replacement, hip reconstruction, arthroscopy, and spine stabilization.",
-    procedures: "35+ Procedures",
-    popular: "Same-Day Mobilization",
-  },
-  {
-    title: "Cardiology & Cardiac Surgery",
-    desc: "Angioplasty, bypass surgery (CABG), valve repair, and rhythm disorder management.",
+    title: "Cardiology & Heart Surgery",
+    desc: "Bypass surgery (CABG), angioplasty, heart valve repair, and rhythm disorder management.",
     procedures: "25+ Procedures",
     popular: "24/7 Cath Lab",
   },
   {
-    title: "Oncology & Surgical Care",
-    desc: "Comprehensive tumor resections, chemotherapy coordination, and precision radiation.",
+    title: "Orthopedics & Joint Replacement",
+    desc: "Robotic total knee replacement, anterior hip reconstruction, and spine microdiscectomy.",
+    procedures: "35+ Procedures",
+    popular: "Robotic Mako Tech",
+  },
+  {
+    title: "Oncology (Cancer Treatment)",
+    desc: "Precision tumor resections, targeted immunotherapy, and multidisciplinary tumor boards.",
     procedures: "50+ Procedures",
-    popular: "Multi-Disciplinary Board",
+    popular: "Organ-Preserving Care",
   },
   {
-    title: "Urology & Nephrology",
-    desc: "Laser stone removal (RIRS), prostate surgery (TURP), and dialysis pathways.",
+    title: "Neurology & Spine Surgery",
+    desc: "Endoscopic discectomy, scoliosis correction, brain tumor resections, and neuro-rehabilitation.",
     procedures: "30+ Procedures",
-    popular: "Day-Care Lasers",
+    popular: "Minimally Invasive",
   },
   {
-    title: "Ophthalmology & Lasik",
-    desc: "Blade-free cataract surgery, premium multifocal lenses, and retina care.",
+    title: "Laparoscopic & Robotic Surgeries",
+    desc: "Single-incision gallbladder removal, complex hernia repair, and bariatric procedures.",
+    procedures: "40+ Procedures",
+    popular: "Same-Day Discharge",
+  },
+  {
+    title: "Cosmetic & Reconstructive Surgery",
+    desc: "Aesthetic contouring, trauma reconstructive surgery, and advanced laser procedures.",
     procedures: "20+ Procedures",
-    popular: "15-Min Procedure",
+    popular: "Board-Certified Plastic Surgeons",
   },
 ]
 
@@ -77,7 +80,7 @@ const doctors = [
     name: "Dr. Arvind Sharma",
     role: "Senior Consultant, Surgical Oncology",
     exp: "22+ Years Exp",
-    hosp: "Apollo & Fortis Hospitals",
+    hosp: "Apollo Cancer Centre & Fortis",
     rating: "4.9",
     reviews: "340+",
     image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80",
@@ -111,12 +114,18 @@ const doctors = [
   },
 ]
 
-export default function Home() {
-  const [activeTab, setActiveTab] = useState(0)
+const stats = [
+  { value: "15+", label: "Years Experience", desc: "Trusted healthcare leadership" },
+  { value: "5K+", label: "Happy Patients", desc: "Guided across 20+ countries" },
+  { value: "50+", label: "Partner Hospitals", desc: "JCI & NABH Accredited institutions" },
+  { value: "20+", label: "Countries Connected", desc: "Global patient support desk" },
+  { value: "24/7", label: "Care Assistance", desc: "Dedicated personal coordinator" },
+]
 
+export default function Home() {
   return (
     <div>
-      {/* 1. Hero Section */}
+      {/* 1. Hero Section with Authentic Hokena Care Copy */}
       <section className="noise-overlay relative overflow-hidden gradient-mesh-orange pt-12 pb-16 lg:pt-16 lg:pb-24 border-b border-[#fed7aa]/50">
         <div className="container-page grid items-center gap-12 lg:grid-cols-12">
           {/* Left Hero Content */}
@@ -126,9 +135,9 @@ export default function Home() {
               className="inline-flex items-center gap-2 rounded-full border border-[#fdba74] bg-white/90 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-[#ea580c] shadow-sm backdrop-blur-md mb-6"
               data-aos="fade-down"
             >
-              <span className="flex h-2 w-2 rounded-full bg-[#f44236]" />
+              <span className="flex h-2 w-2 rounded-full bg-[#f44236] animate-ping" />
               <Sparkles className="h-3.5 w-3.5 text-[#ff6b00]" />
-              Heal In India · Surgical Excellence
+              Healing Beyond Borders · International Medical Care in India
             </div>
 
             {/* Main Typewriter Heading */}
@@ -137,16 +146,23 @@ export default function Home() {
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              <Typewriter />
+              <Typewriter
+                phrases={[
+                  "Healing Beyond Borders, Trusted Care in India",
+                  "Your Health, Your Journey, Your Peace of Mind",
+                  "World-Class Surgeries, Complete Transparency",
+                  "Expert Clinicians, Seamless Recovery",
+                ]}
+              />
             </h1>
 
-            {/* Subtitle */}
+            {/* Subtitle from HokenaCare */}
             <p
               className="mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg"
               data-aos="fade-up"
               data-aos-delay="200"
             >
-              Hokena Care connects you with India's premier accredited hospitals, board-certified super-specialists, and a dedicated 24/7 clinical navigator — delivering transparent, world-class surgical care from diagnosis to full recovery.
+              From consultation to recovery, we guide you through every step of your medical journey with clarity, care, and complete transparency. Access world-class healthcare, expert doctors, and seamless medical travel support — all in one place.
             </p>
 
             {/* Action Buttons */}
@@ -160,18 +176,21 @@ export default function Home() {
                 className="inline-flex items-center justify-center gap-2.5 rounded-full bg-hk-gradient px-7 py-3.5 font-display text-sm font-extrabold text-white shadow-xl shadow-[#ff6b00]/30 transition-all duration-300 hover:shadow-2xl hover:shadow-[#ff6b00]/40 hover:-translate-y-1 active:scale-95"
               >
                 <CalendarCheck className="h-4 w-4" />
-                Book Free Second Opinion
+                Enquire Now / Free Quote
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link
-                to="/treatments"
-                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-orange-200 bg-white/90 px-6 py-3.5 font-display text-sm font-extrabold text-slate-800 transition-all duration-300 hover:border-[#ff6b00] hover:text-[#ff6b00] hover:bg-orange-50/50"
+              <a
+                href="https://wa.me/918296183009"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-green-300 bg-white/95 px-6 py-3.5 font-display text-sm font-extrabold text-green-700 shadow-sm transition-all duration-300 hover:bg-green-50 active:scale-95"
               >
-                Explore Treatments
-              </Link>
+                <MessageCircle className="h-4 w-4 text-[#34d373]" />
+                WhatsApp +91 8296 183 009
+              </a>
             </div>
 
-            {/* Micro Trust Strip */}
+            {/* Core Values Strip from hokenacare.com */}
             <div
               className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-orange-200/60 pt-6 text-xs font-bold text-slate-600"
               data-aos="fade-up"
@@ -179,15 +198,15 @@ export default function Home() {
             >
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-[#ff6b00]" />
-                NABH & NABL Hospitals
+                Ethical & Transparent
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-[#f44236]" />
-                Cashless Insurance Desk
+                Patient Focused
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-4 w-4 text-[#ff6b00]" />
-                Zero Waiting Time
+                Global Support (US, UK, Africa)
               </div>
             </div>
           </div>
@@ -201,8 +220,8 @@ export default function Home() {
               {/* Card Container */}
               <div className="group relative overflow-hidden rounded-[2.25rem] border-[6px] border-white/90 bg-white shadow-[0_30px_90px_rgba(255,107,0,0.2)]">
                 <img
-                  src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=1000&q=80"
-                  alt="Modern Surgical Operating Theatre"
+                  src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1000&q=80"
+                  alt="Doctor reviewing medical scan with international patient"
                   className="h-[440px] sm:h-[480px] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
 
@@ -213,8 +232,8 @@ export default function Home() {
 
                 {/* Top Left Tag */}
                 <div className="absolute top-4 left-4 z-20 rounded-full border border-white/60 bg-white/90 px-3.5 py-1 text-xs font-bold text-slate-800 shadow-md backdrop-blur-md flex items-center gap-1.5">
-                  <ShieldCheck className="h-3.5 w-3.5 text-[#ff6b00]" />
-                  Heal In India Verified
+                  <Globe2 className="h-3.5 w-3.5 text-[#ff6b00]" />
+                  Heal In India Partner
                 </div>
 
                 {/* Bottom Overlay Glass Card */}
@@ -222,10 +241,10 @@ export default function Home() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="font-display text-sm sm:text-base font-extrabold text-slate-900">
-                        Zero-Wait Surgery Admissions
+                        Peace Assured Medical Travel
                       </p>
                       <p className="mt-0.5 text-xs text-slate-600 line-clamp-1">
-                        Direct scheduling with senior chief surgeons across 150+ hospitals.
+                        Full coordination: Hospital selection, visa assistance & post-recovery care.
                       </p>
                     </div>
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-orange-100 text-[#ff6b00]">
@@ -263,46 +282,48 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. Emergency Support Banner */}
-      <section className="bg-gradient-to-r from-[#ff6b00] via-[#ea580c] to-[#f44236] py-3.5 text-white">
-        <div className="container-page flex flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left">
-          <div className="flex items-center gap-3">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20">
-              <PhoneCall className="h-4 w-4 text-white" />
-            </span>
-            <p className="font-display text-sm font-bold sm:text-base">
-              Need urgent surgical opinion or hospital admission? Our clinical desk is available 24x7.
-            </p>
-          </div>
-          <a
-            href="tel:1800465362"
-            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-extrabold text-[#ea580c] shadow-sm transition-transform hover:scale-105"
-          >
-            <PhoneCall className="h-3.5 w-3.5" />
-            1800-HOKENA
-          </a>
+      {/* 3. 5 Pillars Stats Counter Strip (From hokenacare.com) */}
+      <section className="container-page py-12" data-aos="fade-up">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
+          {stats.map((s) => (
+            <div
+              key={s.label}
+              className="rounded-2xl border border-orange-100 bg-gradient-to-b from-white to-orange-50/30 p-6 text-center shadow-sm"
+            >
+              <span className="font-display text-3xl sm:text-4xl font-black text-[#ff6b00]">
+                {s.value}
+              </span>
+              <h4 className="font-display text-sm font-extrabold text-slate-900 mt-1">
+                {s.label}
+              </h4>
+              <p className="text-xs text-slate-500 mt-0.5">{s.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* 4. Surgical Specialties */}
-      <section className="container-page py-20">
+      {/* 4. Interactive Cost Savings Calculator (Better than hokenacare.com!) */}
+      <CostSavingsCalculator />
+
+      {/* 5. Medical Specialties We Support */}
+      <section className="container-page py-16" id="treatments">
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end mb-12">
           <div>
             <span className="mb-2 inline-flex items-center gap-2 rounded-full bg-orange-100 px-3 py-1 text-xs font-bold text-[#ea580c]">
-              Specialized Care
+              Treatments We Cover
             </span>
             <h2 className="font-display text-3xl font-black text-slate-900 sm:text-4xl">
-              Surgical Specialties with Proven Outcomes
+              Medical Specialties We Support
             </h2>
-            <p className="mt-2 max-w-2xl text-slate-600">
-              Every specialty is backed by board-certified department heads, cutting-edge robotic/laparoscopic technology, and dedicated care managers.
+            <p className="mt-2 max-w-2xl text-slate-600 text-sm sm:text-base">
+              We connect you with trusted specialists across a wide range of advanced medical fields, ensuring expert care tailored to your specific health needs.
             </p>
           </div>
           <Link
             to="/treatments"
             className="inline-flex items-center gap-1.5 font-display text-sm font-extrabold text-[#ff6b00] hover:text-[#ea580c]"
           >
-            View all 40+ surgeries <ChevronRight className="h-4 w-4" />
+            Explore all specialties <ChevronRight className="h-4 w-4" />
           </Link>
         </div>
 
@@ -329,12 +350,12 @@ export default function Home() {
                 {spec.desc}
               </p>
               <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-500">Free Case Assessment</span>
+                <span className="text-xs font-bold text-slate-500">Free Second Opinion</span>
                 <Link
                   to="/contact"
                   className="inline-flex items-center gap-1 text-sm font-extrabold text-[#ff6b00] group-hover:gap-2 transition-all"
                 >
-                  Consult Specialist <ArrowRight className="h-3.5 w-3.5" />
+                  Enquire Now <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
             </div>
@@ -342,79 +363,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. 3-Step Care Pathway */}
-      <section className="bg-hk-mist py-20 border-y border-orange-100/60">
-        <div className="container-page">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="mb-2 inline-flex items-center gap-2 rounded-full bg-orange-100 px-3.5 py-1 text-xs font-bold text-[#ea580c]">
-              The Patient Journey
-            </span>
-            <h2 className="font-display text-3xl font-black text-slate-900 sm:text-4xl">
-              From Diagnosis to Recovery in 3 Steps
-            </h2>
-            <p className="mt-3 text-slate-600">
-              We remove the confusion and stress from hospital admissions and surgeries.
-            </p>
-          </div>
+      {/* 6. The 9-Step Guided Process (from hokenacare.com) */}
+      <CareJourneyTimeline />
 
-          <div className="grid gap-8 md:grid-cols-3">
-            {[
-              {
-                num: "01",
-                title: "Expert Second Opinion",
-                desc: "Share your medical reports. Our clinical panel reviews your case and matches you with top surgeons.",
-              },
-              {
-                num: "02",
-                title: "Zero-Wait Cashless Admission",
-                desc: "We manage pre-authorization with your health insurer, reserve private rooms, and schedule tests upfront.",
-              },
-              {
-                num: "03",
-                title: "Post-Op Guided Recovery",
-                desc: "Dedicated nurse follow-ups, at-home physiotherapy, medicine delivery, and digital recovery tracking.",
-              },
-            ].map((step, idx) => (
-              <div
-                key={step.num}
-                className="relative rounded-[2rem] border border-white bg-white p-8 shadow-sm transition-all hover:shadow-lg"
-                data-aos="fade-up"
-                data-aos-delay={idx * 100}
-              >
-                <div className="font-display text-5xl font-black text-orange-200 mb-4">
-                  {step.num}
-                </div>
-                <h3 className="font-display text-xl font-bold text-slate-900">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                  {step.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 7. Why Choose India Section (from hokenacare.com) */}
+      <WhyIndiaSection />
 
-      {/* 6. Featured Doctors */}
-      <section className="container-page py-20">
+      {/* 8. Senior Specialists Showcase */}
+      <section className="container-page py-16">
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end mb-12">
           <div>
             <span className="mb-2 inline-flex items-center gap-2 rounded-full bg-orange-100 px-3 py-1 text-xs font-bold text-[#ea580c]">
-              Clinical Excellence
+              Senior Specialists
             </span>
             <h2 className="font-display text-3xl font-black text-slate-900 sm:text-4xl">
-              Meet Our Senior Specialists & Surgeons
+              Meet Our Chief Surgeons & Department Heads
             </h2>
-            <p className="mt-2 max-w-2xl text-slate-600">
-              Board-certified practitioners with decades of surgical experience across top tertiary hospitals in India.
+            <p className="mt-2 max-w-2xl text-slate-600 text-sm">
+              Trained at premier UK, US, and European institutions with decades of verified clinical excellence.
             </p>
           </div>
           <Link
             to="/doctors"
             className="inline-flex items-center gap-1.5 font-display text-sm font-extrabold text-[#ff6b00]"
           >
-            Browse all 1,500+ doctors <ChevronRight className="h-4 w-4" />
+            Browse all doctors <ChevronRight className="h-4 w-4" />
           </Link>
         </div>
 
@@ -453,7 +426,7 @@ export default function Home() {
                     className="flex w-full items-center justify-center gap-2 rounded-xl bg-orange-50 py-2.5 text-xs font-bold text-[#ff6b00] transition-colors group-hover:bg-[#ff6b00] group-hover:text-white"
                   >
                     <CalendarCheck className="h-3.5 w-3.5" />
-                    Book Consultation
+                    Book Video Consultation
                   </Link>
                 </div>
               </div>
@@ -462,7 +435,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. Bottom High-Converting CTA Banner */}
+      {/* 9. Comprehensive FAQs (from hokenacare.com) */}
+      <FaqAccordion />
+
+      {/* 10. High-Converting Bottom CTA Banner */}
       <section className="container-page my-16">
         <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#0b1220] via-[#1e293b] to-[#0b1220] p-8 sm:p-12 lg:p-16 text-white shadow-2xl border border-white/10">
           {/* Ambient Glows */}
@@ -473,18 +449,18 @@ export default function Home() {
             <div className="lg:col-span-7">
               <span className="inline-flex items-center gap-2 rounded-full border border-orange-400/30 bg-orange-500/10 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-[#ff8533] backdrop-blur-md mb-6">
                 <Sparkles className="h-3.5 w-3.5 text-[#ff6b00]" />
-                24/7 Surgical Navigator
+                Start Your Medical Journey with Confidence
               </span>
 
               <h2 className="font-display text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl">
-                Ready to plan your treatment with{" "}
+                Ready to take the next step with{" "}
                 <span className="bg-gradient-to-r from-[#ff8533] to-[#f44236] bg-clip-text text-transparent">
                   Hokena Care?
                 </span>
               </h2>
 
               <p className="mt-4 text-slate-300 text-base sm:text-lg max-w-xl">
-                Get an unbiased second opinion, transparent cost estimate, and hospital comparison within 24 hours.
+                Share your medical reports for a comprehensive second opinion, hospital comparison, and transparent quotation within 24 hours.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
@@ -493,14 +469,16 @@ export default function Home() {
                   className="inline-flex items-center gap-2 rounded-full bg-hk-gradient px-7 py-3.5 font-display text-sm font-extrabold text-white shadow-lg shadow-[#ff6b00]/30 hover:shadow-xl hover:-translate-y-0.5 transition-all"
                 >
                   <CalendarCheck className="h-4 w-4" />
-                  Request Second Opinion
+                  Enquire Now / Free Quote
                 </Link>
                 <a
-                  href="tel:1800465362"
+                  href="https://wa.me/918296183009"
+                  target="_blank"
+                  rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3.5 font-display text-sm font-extrabold text-white backdrop-blur-md hover:bg-white/20 transition-all"
                 >
-                  <PhoneCall className="h-4 w-4 text-[#ff6b00]" />
-                  Call 1800-HOKENA
+                  <MessageCircle className="h-4 w-4 text-[#34d373]" />
+                  WhatsApp +91 8296 183 009
                 </a>
               </div>
             </div>
@@ -514,9 +492,9 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-display text-base font-extrabold text-white">
-                      Heal in India Concierge
+                      Hokena Care International Desk
                     </h3>
-                    <p className="text-xs text-white/70">Personal Care Coordinator</p>
+                    <p className="text-xs text-white/70">Bangalore Headquarters, India</p>
                   </div>
                 </div>
 
@@ -524,29 +502,27 @@ export default function Home() {
                   <div className="flex items-start gap-3 rounded-xl bg-white/5 p-3">
                     <ShieldCheck className="h-4 w-4 text-[#ff6b00] shrink-0 mt-0.5" />
                     <div>
-                      <span className="font-bold text-white">Free Medical Visa Support</span>
-                      <p className="text-slate-300 mt-0.5">Assistance for international and outstation patients.</p>
+                      <span className="font-bold text-white">Official Medical Visa Support</span>
+                      <p className="text-slate-300 mt-0.5">24-hour invitation letters for patient and attendants.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 rounded-xl bg-white/5 p-3">
                     <CheckCircle2 className="h-4 w-4 text-[#34d373] shrink-0 mt-0.5" />
                     <div>
-                      <span className="font-bold text-white">100% Cashless Insurance</span>
-                      <p className="text-slate-300 mt-0.5">Pre-authorized paperless admission at partner hospitals.</p>
+                      <span className="font-bold text-white">100% Transparent Pricing</span>
+                      <p className="text-slate-300 mt-0.5">Fixed quotes covering surgery, hospital stay & follow-ups.</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-5 rounded-xl bg-black/30 p-3 text-center text-xs">
                   <p className="text-white/80">
-                    Instant WhatsApp Assistance:{" "}
+                    Email our Clinical Panel:{" "}
                     <a
-                      href="https://wa.me/911800465362"
-                      target="_blank"
-                      rel="noreferrer"
+                      href="mailto:info@hokenacare.com"
                       className="font-bold text-[#ff8533] hover:underline"
                     >
-                      Chat with Doctor Desk
+                      info@hokenacare.com
                     </a>
                   </p>
                 </div>
